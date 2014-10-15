@@ -5,7 +5,20 @@
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
+if [[ -e /opt/jk-sys/zsh ]]; then
+  JKSYSDIR=/opt/jk-sys/zsh
+fi
+
+if [[ -e $HOME/.jk-sys/zsh ]]; then
+  JKSYSDIR=$HOME/.jk-sys/zsh
+fi
+
+if [[ -e /usr/local/jk-sys ]]; then
+  JKSYSDIR=/usr/local/jk-sys
+fi
+
 # Ensure that a non-login, non-interactive shell has a defined environment.
 if [[ "$SHLVL" -eq 1 && ! -o LOGIN && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprofile"
 fi
+
