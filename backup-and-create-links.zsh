@@ -38,7 +38,7 @@ fi
 TODAY=`date +%Y%m%d`
 
 setopt EXTENDED_GLOB
-for rcfile in "$ZDOTDIR"/runcoms/^README.md(.N); do
+for rcfile in "$ZDOTDIR"/dotfiles/^README.md(.N); do
   DESTFILE=
   if [[ -n $GLOBAL ]]; then
     DESTFILE="$DEST/${rcfile:t}"
