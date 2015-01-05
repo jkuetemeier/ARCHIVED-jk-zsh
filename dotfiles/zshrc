@@ -87,9 +87,23 @@ setopt extendedglob
 unsetopt nomatch
 
 # vi mode
+# enable vim mode on command line
 bindkey -v
 bindkey "^F" vi-cmd-mode
 bindkey jj vi-cmd-mode
+
+# add missing vim hotkeys
+# fixes backspace deletion issues
+# http://zshwiki.org/home/zle/vi-mode
+bindkey -a u undo
+bindkey -a '^R' redo
+bindkey '^?' backward-delete-char
+bindkey '^H' backward-delete-char
+
+# history search in vim mode
+# http://zshwiki.org/home/zle/bindkeys#why_isn_t_control-r_working_anymore
+bindkey -M viins '^s' history-incremental-search-backward
+bindkey -M vicmd '^s' history-incremental-search-backward
 
 # handy keybindings
 bindkey "^A" beginning-of-line
@@ -435,6 +449,15 @@ export LS_COLORS='no=00:fi=00:di=01;34:ln=00;36:pi=40;33:so=01;35:do=01;35:bd=40
 
 if [ -e /usr/local/bin/gls ]; then alias ls="gls --color='auto'"; fi
 
+# show vim status
+# http://zshwiki.org/home/examples/zlewidgets
+function zle-line-init zle-keymap-select {
+    RPS1="${${KEYMAP/vicmd/-- NORMAL --}/(main|viins)/-- INSERT --}"
+    RPS2=$RPS1
+    zle reset-prompt
+}
+zle -N zle-line-init
+zle -N zle-keymap-select
 
 
 #----
