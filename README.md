@@ -1,5 +1,6 @@
-# this repo is ARCHIVED (deprecated)
-use jk-etc-home-dotfiles (https://github.com/jkuetemeier/jk-etc-home-dotfiles) instead
+## ARCHIVED (deprecated)
+
+See https://github.com/kuetemeier/home-files for a more recent version of my home, zsh and dot-files.
 
 # jk-zsh
 
